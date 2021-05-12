@@ -88,15 +88,11 @@ public class Rezervisanje extends JFrame {
 		btnNewButton = new JButton("POTVRDI");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//potvrdio
-				int filmBrojac = 0, br1 = 0;
-				if( !validnoIme(txtImeIPrezime.getText()) ) filmBrojac++;
-				if( !validnaLicna(txtBrojLineKarte.getText()) ) br1++;
-				
 				Provera pro = new Provera();
-				if( filmBrojac != 0 && br1 != 0 ) pro.setDialogTekst("Ime Prezime i broj li\u010Dne karte nisu dobro uneti!");
-				else if( filmBrojac == 0 && br1 != 0 ) pro.setDialogTekst("Broj li\u010Dne karte nije dobro unet!");
-				else if( filmBrojac != 0 && br1 == 0 ) pro.setDialogTekst("Ime i Prezime nije uneto validno!");
-				else if( filmBrojac == 0 && br1 == 0 ) {
+				if(!validnoIme(txtImeIPrezime.getText())) pro.setDialogTekst("Ime i Prezime nije uneto validno!");
+				else if(!validnaLicna(txtBrojLineKarte.getText())) pro.setDialogTekst("Broj li\u010Dne karte nije dobro unet!");
+				else if(!validnoIme(txtImeIPrezime.getText()) && !validnaLicna(txtBrojLineKarte.getText())) pro.setDialogTekst("Ime Prezime i broj li\u010Dne karte nisu dobro uneti!");
+				else {
 					setTitle("CINE rezervacija");
 					pro.setDialogTekst("Uspesno ste izvršili rezervaciju!");
 					Rezervacija novaRez = new Rezervacija(txtImeIPrezime.getText(), Integer.valueOf(txtBrojLineKarte.getText()), brul, vip, filmID, dan);
